@@ -1,48 +1,35 @@
+import "./styles.css";
+import menuData from "./menu.json";
+import menuTemplate from "./templates/menu.hbs";
 
-import style from './css/style.css';
-import PNotify from '../node_modules/pnotify/dist/es/PNotify.js';
-import PNotifyStyleMaterial from 'pnotify/dist/es/PNotifyStyleMaterial.js';
-import PNotifyButtons from '../node_modules/pnotify/dist/es/PNotifyButtons.js';
+const ulMenuRef = document.querySelector(".js-menu");
+const inputThemeRef = document.querySelector("#theme-switch-toggle");
+const bodyRef = document.querySelector("body");
 
-PNotify.defaults.styling = 'material';
-PNotify.defaults.icons = 'material';
+const markup = menuTemplate(menuData);
+ulMenuRef.insertAdjacentHTML("afterbegin", markup);
 
+const Theme = {
+  LIGHT: "light-theme",
+  DARK: "dark-theme",
+};
 
-console.log(PNotify.defaults)
+bodyRef.classList.toggle(localStorage.getItem("Theme"));
 
+if (bodyRef.classList.contains("dark-theme")) {
+  inputThemeRef.checked = true;
+}
 
+const switchTheme = () => {
+  bodyRef.classList.add("light-theme");
 
-PNotify.alert('Notice me, senpai!');
-PNotify.notice({
-    title: 'Desktop Notice',
-    text: 'I\'ll appear as a desktop notification. Unless I can\'t. I\'ll still appear as a regular PNotify notice then.'
-  });
+  if (bodyRef.classList.contains("dark-theme")) {
+    bodyRef.classList.replace("dark-theme", "light-theme");
+    localStorage.setItem("Theme", Theme.LIGHT);
+  } else {
+    bodyRef.classList.replace("light-theme", "dark-theme");
+    localStorage.setItem("Theme", Theme.DARK);
+  }
+};
 
-
-// let inp = document.querySelector('input');
-// inp.addEventListener('change', (e)=> {
-
-
-//     e.target.value.length > 3 
-//     ? fetch(`https://pokeapi.co/api/v2/pokemon/${e.target.value}`)
-//     .then(data=> data.json())
-//     .then(({name, abilities, sprites})=> 
-//     {
-//         document.body.insertAdjacentHTML('afterbegin',
-//     `<div class="wrapper">
-//     <h2>${name}</h2>
-//     <img src=${sprites.front_default}>
-//     <ul class="abilities"></ul>
-//     </div>`)
-//     abilities.forEach(({ability})=> {
-//         document.querySelector(".abilities").innerHTML += `<li>${ability.name}</li>`
-//     })
-
-// }) 
-//     : ''
-
-// })
-
-
-
-
+inputThemeRef.addEventListener("change", switchTheme);

@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+// тут вставить url репозитория на гите"
+    "url": "git+https://github.com/Stanislav-Karasyk/goit-js-hw-10-food-service"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "// тут вставить url репозитория на гите"
+    "url": "https://github.com/Stanislav-Karasyk/goit-js-hw-10-food-service"
   },
-  "homepage": "// тут вставить url GitHub Pages после команды npm run deploy",
+  "homepage": "https://stanislav-karasyk.github.io/goit-js-hw-10-food-service",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
